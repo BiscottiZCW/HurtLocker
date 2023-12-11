@@ -106,7 +106,6 @@ public class GroceryListTest {
         int actual = groceryList.Apples.size();
 
         Assert.assertEquals(expected, actual );
-
     }
     @Test
     public void testGetError() {
@@ -114,5 +113,34 @@ public class GroceryListTest {
         groceryList.setError(5);
 
         Assert.assertEquals(5, groceryList.getError());
+    }
+    @Test
+    public void testCountError_One() {
+        GroceryList groceryList = new GroceryList();
+
+        ArrayList<GroceryItem> Milk = new ArrayList<>();
+        GroceryItem groceryItemOneError = new GroceryItem("", "price", "type", "expiration");
+        Milk.add(groceryItemOneError);
+        int expected = 1;
+
+        groceryList.setMilk(Milk);
+        int actual = groceryList.countError();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testCountError_Four() {
+        GroceryList groceryList = new GroceryList();
+
+        ArrayList<GroceryItem> Milk = new ArrayList<>();
+        GroceryItem groceryItemFourErrors = new GroceryItem("", "", "", "");
+        Milk.add(groceryItemFourErrors);
+        int expected = 4;
+
+        groceryList.setMilk(Milk);
+        int actual = groceryList.countError();
+
+        assertEquals(expected, actual);
     }
 }
