@@ -50,7 +50,7 @@ public class GroceryItem {
             return matcher.group(0);
         }
         else {
-            return " ";
+            return "";
         }
     }
 
@@ -61,7 +61,7 @@ public class GroceryItem {
             return matcher.group(0);
         }
         else {
-            return " ";
+            return "";
         }
     }
 
@@ -72,7 +72,7 @@ public class GroceryItem {
             return matcher.group(0);
         }
         else {
-            return " ";
+            return "";
         }
     }
 
@@ -83,7 +83,7 @@ public class GroceryItem {
             return matcher.group(0);
         }
         else {
-            return " ";
+            return "";
         }
     }
 }
