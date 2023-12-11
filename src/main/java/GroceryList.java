@@ -42,7 +42,7 @@ public class GroceryList extends ArrayList<ArrayList<GroceryItem>> {
     public void setError(int error) {this.Error = error;}
 
 
-    public int countError (){
+    public void countError (){
 
         int errorCount = 0;
         for (ArrayList<GroceryItem> list : this) {
@@ -61,7 +61,6 @@ public class GroceryList extends ArrayList<ArrayList<GroceryItem>> {
                 }
             }
         }
-
-        return errorCount;
+        this.Error = errorCount;
     }
 }

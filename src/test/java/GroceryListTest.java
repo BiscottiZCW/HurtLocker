@@ -124,7 +124,7 @@ public class GroceryListTest {
         int expected = 1;
 
         groceryList.setMilk(Milk);
-        int actual = groceryList.countError();
+        int actual = groceryList.getError();
 
         assertEquals(expected, actual);
     }
@@ -139,7 +139,7 @@ public class GroceryListTest {
         int expected = 4;
 
         groceryList.setMilk(Milk);
-        int actual = groceryList.countError();
+        int actual = groceryList.getError();
 
         assertEquals(expected, actual);
     }
