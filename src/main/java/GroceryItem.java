@@ -47,7 +47,7 @@ public class GroceryItem {
         pattern = Pattern.compile("[nN]..[eE]:(\\w*);", Pattern.CASE_INSENSITIVE);
         matcher = pattern.matcher(segment);
         if (matcher.find()){
-            return matcher.group(0);
+            return matcher.group(1);
         }
         else {
             return "";
@@ -58,7 +58,7 @@ public class GroceryItem {
         pattern = Pattern.compile("[pP]...[eE]:(\\d\\.\\d\\d);", Pattern.CASE_INSENSITIVE);
         matcher = pattern.matcher(segment);
         if (matcher.find()){
-            return matcher.group(0);
+            return matcher.group(1);
         }
         else {
             return "";
@@ -69,7 +69,7 @@ public class GroceryItem {
         pattern = Pattern.compile("[tT]..[eE]:(\\w*);", Pattern.CASE_INSENSITIVE);
         matcher = pattern.matcher(segment);
         if (matcher.find()){
-            return matcher.group(0);
+            return matcher.group(1);
         }
         else {
             return "";
@@ -77,10 +77,10 @@ public class GroceryItem {
     }
 
     public String extractExpiration(String segment){
-        pattern = Pattern.compile("[eE]........[nN]:(.*)##", Pattern.CASE_INSENSITIVE);
+        pattern = Pattern.compile("[eE]........[nN]:(.*)", Pattern.CASE_INSENSITIVE);
         matcher = pattern.matcher(segment);
         if (matcher.find()){
-            return matcher.group(0);
+            return matcher.group(1);
         }
         else {
             return "";

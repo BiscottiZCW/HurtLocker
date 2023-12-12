@@ -18,10 +18,10 @@ public class JerksonIOTest {
         apples.add(new GroceryItem("Apples", "0.23", "food", "2/27/2020"));
         bread.add(new GroceryItem("Bread", "1.23", "food", "3/19/2021"));
         cookies.add(new GroceryItem("Cookies", "2.25", "food", "4/15/2022"));
-        groceryList.add(milk);
-        groceryList.add(bread);
-        groceryList.add(apples);
-        groceryList.add(cookies);
+        groceryList.setMilk(milk);
+        groceryList.setBread(bread);
+        groceryList.setApples(apples);
+        groceryList.setCookies(cookies);
         groceryList.setError(2);
 
         String actual = JerksonIO.createFormatString();
