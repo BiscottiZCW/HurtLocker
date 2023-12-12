@@ -23,14 +23,14 @@ public class GroceryItemTest {
          price = "0.00";
          type = "food";
          expiration = "01-03-2034" ;
-        exp1 = "nAme:Milk;price:3.23;type:Food;expiration:1/25/2016##";// nor
-        expSyb1 = "nAMe:cookies;price:3.23?type:Food;expiration:1/26/2016##";// change sy
-        expSyb2 = "naMe:co0kies;price:0.23@type:Food;expiration:1/26/2019##";// change sy
-        expError1 = "NaMe:;price:3.25;type:Food;expiration:1/25/2046##"; // error1
-        expError2 = "NaMe:BRead;price:;type:Food;expiration:1/25/2046##"; // error2
-        expError3 = "NaMe:cookie;price:3.25;type:Food;expiration:##"; // error3
-        expError4 = "NaMe:BRead;price:0.45;type:;expiration:1/25/2046##"; // error4
-        exp2= "NAMe:BRead;price:5.23;type:Food;expiration:4/20/2016##";//  nor
+        exp1 = "nAme:Milk;price:3.23;type:Food;expiration:1/25/2016";// nor
+        expSyb1 = "nAMe:cookies;price:3.23?type:Food;expiration:1/26/2016";// change sy
+        expSyb2 = "naMe:co0kies;price:0.23@type:Food;expiration:1/26/2019";// change sy
+        expError1 = "NaMe:;price:3.25;type:Food;expiration:1/25/2046"; // error1
+        expError2 = "NaMe:BRead;price:;type:Food;expiration:1/25/2046"; // error2
+        expError3 = "NaMe:cookie;price:3.25;type:Food;expiration:"; // error3
+        expError4 = "NaMe:BRead;price:0.45;type:;expiration:1/25/2046"; // error4
+        exp2= "NAMe:BRead;price:5.23;type:Food;expiration:4/20/2016";//  nor
 
         //   need to set up a constructor.
        groceryItem = new GroceryItem(name, price, type , expiration);
@@ -92,7 +92,6 @@ public class GroceryItemTest {
         String expect = "BRead";
         Assert.assertEquals(expect,actual);
     }
-
     @Test
     public void extractPriceTest(){
 
