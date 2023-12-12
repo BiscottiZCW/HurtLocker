@@ -9,6 +9,11 @@ import java.util.regex.Pattern;
 public class JerksonIO {
 
     static GroceryList gl = new GroceryList();
+    static int breadCount = 0;
+    static int milkCount = 0;
+    static int cookieCount = 0;
+    static int appleCount = 0;
+
     static Pattern pattern;
     static Matcher matcher;
 
@@ -54,43 +59,56 @@ public class JerksonIO {
     }
 
     public static String createFormatString() {
-        int milkCount = gl.getMilk().size();
-        int breadCount = gl.getBread().size();
-        int cookieCount = gl.getCookies().size();
-        int appleCount = gl.getApples().size();
         gl.countError();
         int errorCount = gl.getError();
         TreeMap<Double, Integer> milkPrices = countMilkPrices();
         TreeMap<Double, Integer> breadPrices = countBreadPrices();
         TreeMap<Double, Integer> cookiesPrices = countCookiesPrices();
         TreeMap<Double, Integer> applesPrices = countApplesPrices();
+
         StringBuilder sb = new StringBuilder();
+        int i = 0;
         sb.append("name:    Milk 		 seen: ").append(milkCount).append(" times\n");
         sb.append("============= \t \t =============\n");
         for (Double key: milkPrices.keySet()){
             sb.append("Price: \t ").append(key).append("		 seen: ").append(milkPrices.get(key)).append(" times\n");
-            sb.append("-------------\t\t -------------\n");
+            if (i == 0){
+                sb.append("-------------\t\t -------------\n");
+            }
+            i++;
         }
         sb.append("\n");
+        i = 0;
         sb.append("name:   Bread		 seen: ").append(breadCount).append(" times\n");
         sb.append("============= \t \t =============\n");
         for (Double key: breadPrices.keySet()){
             sb.append("Price: \t ").append(key).append("		 seen: ").append(breadPrices.get(key)).append(" times\n");
-            sb.append("-------------\t\t -------------\n");
+            if (i == 0){
+                sb.append("-------------\t\t -------------\n");
+            }
+            i++;
         }
         sb.append("\n");
+        i = 0;
         sb.append("name: Cookies        seen: ").append(cookieCount).append(" times\n");
         sb.append("============= \t \t =============\n");
         for (Double key: cookiesPrices.keySet()){
             sb.append("Price: \t ").append(key).append("		 seen: ").append(cookiesPrices.get(key)).append(" times\n");
-            sb.append("-------------\t\t -------------\n");
+            if (i == 0){
+                sb.append("-------------\t\t -------------\n");
+            }
+            i++;
         }
         sb.append("\n");
+        i = 0;
         sb.append("name:  Apples		 seen: ").append(appleCount).append(" times\n");
         sb.append("============= \t \t =============\n");
         for (Double key: applesPrices.keySet()){
             sb.append("Price: \t ").append(key).append("		 seen: ").append(applesPrices.get(key)).append(" times\n");
-            sb.append("-------------\t\t -------------\n");
+            if (i == 0){
+                sb.append("-------------\t\t -------------\n");
+            }
+            i++;
         }
         sb.append("\n");
         sb.append("Errors         \t \t seen: ").append(errorCount).append(" times");
@@ -107,6 +125,7 @@ public class JerksonIO {
                 prices.add(Double.valueOf(item.getPrice()));
             }
         }
+        milkCount = prices.size();
         HashSet<Double> difPrice = new HashSet<>(prices);
         TreeMap<Double, Integer> allPrices = new TreeMap<>(Comparator.reverseOrder());
         for (Double price: difPrice){
@@ -129,6 +148,7 @@ public class JerksonIO {
         for (GroceryItem item : gl.getBread()) {
             prices.add(Double.valueOf(item.getPrice()));
         }
+        breadCount = prices.size();
         HashSet<Double> difPrice = new HashSet<>(prices);
         TreeMap<Double, Integer> allPrices = new TreeMap<>(Comparator.reverseOrder());
         for (Double price : difPrice) {
@@ -151,6 +171,7 @@ public class JerksonIO {
         for (GroceryItem item : gl.getCookies()) {
             prices.add(Double.valueOf(item.getPrice()));
         }
+        cookieCount = prices.size();
         HashSet<Double> difPrice = new HashSet<>(prices);
         TreeMap<Double, Integer> allPrices = new TreeMap<>(Comparator.reverseOrder());
         for (Double price : difPrice) {
@@ -173,6 +194,7 @@ public class JerksonIO {
         for (GroceryItem item : gl.getApples()) {
             prices.add(Double.valueOf(item.getPrice()));
         }
+        appleCount = prices.size();
         HashSet<Double> difPrice = new HashSet<>(prices);
         TreeMap<Double, Integer> allPrices = new TreeMap<>(Comparator.reverseOrder());
         for (Double price : difPrice) {
