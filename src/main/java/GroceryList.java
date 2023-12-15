@@ -1,5 +1,8 @@
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.TreeMap;
 
 public class GroceryList extends ArrayList<ArrayList<GroceryItem>> {
 
@@ -8,6 +11,15 @@ public class GroceryList extends ArrayList<ArrayList<GroceryItem>> {
     ArrayList<GroceryItem> Cookies;
     ArrayList<GroceryItem> Apples;
     int Error;
+
+    TreeMap<Double, Integer> milkPrices;
+    int milkPriceCount = 0;
+    TreeMap<Double, Integer> breadPrices;
+    int breadPriceCount = 0;
+    TreeMap<Double, Integer> cookiesPrices;
+    int cookiePriceCount = 0;
+    TreeMap<Double, Integer> applesPrices;
+    int applePriceCount = 0;
 
     public GroceryList() {
         this.Milk = new ArrayList<>();
@@ -41,26 +53,183 @@ public class GroceryList extends ArrayList<ArrayList<GroceryItem>> {
     public int getError() {return Error;}
     public void setError(int error) {this.Error = error;}
 
+    public void addToMilk(GroceryItem milk){
+        this.Milk.add(milk);
+    }
+
+    public void addToBread(GroceryItem bread){
+        this.Bread.add(bread);
+    }
+
+    public void addToApples(GroceryItem apples){
+        this.Apples.add(apples);
+    }
+
+    public void addToCookies(GroceryItem cookies){
+        this.Cookies.add(cookies);
+    }
+
 
     public void countError (){
-
-        int errorCount = 0;
         for (ArrayList<GroceryItem> list : this) {
             for (GroceryItem item : list) {
-                if (item.getName().isEmpty()) {
-                }
-                    errorCount++;
                 if (item.getPrice().isEmpty()) {
-                    errorCount++;
+                    incrementError();
                 }
                 if (item.getType().isEmpty()) {
-                    errorCount++;
+                    incrementError();
                 }
                 if (item.getExpiration().isEmpty()) {
-                    errorCount++;
+                    incrementError();
                 }
             }
         }
-        this.Error = errorCount;
+    }
+
+    public void incrementError() {
+        this.Error = getError() + 1;
+    }
+
+    public void countMilkPrices(){
+        ArrayList<Double> prices = new ArrayList<>();
+        for (GroceryItem item : getMilk()){
+            if (!item.getPrice().isEmpty()){
+                prices.add(Double.valueOf(item.getPrice()));
+            }
+        }
+        milkPriceCount = prices.size();
+
+        HashSet<Double> difPrice = new HashSet<>(prices);
+        TreeMap<Double, Integer> allPrices = new TreeMap<>(Comparator.reverseOrder());
+        for (Double price: difPrice){
+            allPrices.put(price, 0);
+        }
+        for (Double key: allPrices.keySet()){
+            for (Double price: prices){
+                if(key.equals(price)){
+                    int count = allPrices.get(key);
+                    allPrices.put(key, count + 1);
+                }
+            }
+        }
+
+        this.applesPrices = allPrices;
+    }
+
+    public void countBreadPrices(){
+        ArrayList<Double> prices = new ArrayList<>();
+        for (GroceryItem item : getBread()){
+            if (!item.getPrice().isEmpty()){
+                prices.add(Double.valueOf(item.getPrice()));
+            }
+        }
+        breadPriceCount = prices.size();
+
+        HashSet<Double> difPrice = new HashSet<>(prices);
+        TreeMap<Double, Integer> allPrices = new TreeMap<>(Comparator.reverseOrder());
+        for (Double price: difPrice){
+            allPrices.put(price, 0);
+        }
+        for (Double key: allPrices.keySet()){
+            for (Double price: prices){
+                if(key.equals(price)){
+                    int count = allPrices.get(key);
+                    allPrices.put(key, count + 1);
+                }
+            }
+        }
+
+        this.applesPrices = allPrices;
+    }
+
+    public void countCookiesPrices(){
+        ArrayList<Double> prices = new ArrayList<>();
+        for (GroceryItem item : getCookies()){
+            if (!item.getPrice().isEmpty()){
+                prices.add(Double.valueOf(item.getPrice()));
+            }
+        }
+        cookiePriceCount = prices.size();
+
+        HashSet<Double> difPrice = new HashSet<>(prices);
+        TreeMap<Double, Integer> allPrices = new TreeMap<>(Comparator.reverseOrder());
+        for (Double price: difPrice){
+            allPrices.put(price, 0);
+        }
+        for (Double key: allPrices.keySet()){
+            for (Double price: prices){
+                if(key.equals(price)){
+                    int count = allPrices.get(key);
+                    allPrices.put(key, count + 1);
+                }
+            }
+        }
+
+        this.cookiesPrices = allPrices;
+    }
+
+    public void countApplesPrices(){
+        ArrayList<Double> prices = new ArrayList<>();
+        for (GroceryItem item : getApples()){
+            if (!item.getPrice().isEmpty()){
+                prices.add(Double.valueOf(item.getPrice()));
+            }
+        }
+        applePriceCount = prices.size();
+
+        HashSet<Double> difPrice = new HashSet<>(prices);
+        TreeMap<Double, Integer> allPrices = new TreeMap<>(Comparator.reverseOrder());
+        for (Double price: difPrice){
+            allPrices.put(price, 0);
+        }
+        for (Double key: allPrices.keySet()){
+            for (Double price: prices){
+                if(key.equals(price)){
+                    int count = allPrices.get(key);
+                    allPrices.put(key, count + 1);
+                }
+            }
+        }
+
+        this.applesPrices = allPrices;
+    }
+
+    public void countAllPrices(){
+        countMilkPrices();
+        countBreadPrices();
+        countCookiesPrices();
+        countApplesPrices();
+    }
+
+    public int getMilkPriceCount(){
+        return milkPriceCount;
+    }
+
+    public int getBreadPriceCount(){
+        return breadPriceCount;
+    }
+
+    public int getCookiePriceCount(){
+        return cookiePriceCount;
+    }
+
+    public int getApplePriceCount(){
+        return applePriceCount;
+    }
+
+    public TreeMap<Double, Integer> getMilkPrices(){
+        return milkPrices;
+    }
+
+    public TreeMap<Double, Integer> getBreadPrices(){
+        return breadPrices;
+    }
+
+    public TreeMap<Double, Integer> getCookiesPrices(){
+        return cookiesPrices;
+    }
+
+    public TreeMap<Double, Integer> getApplesPrices(){
+        return applesPrices;
     }
 }

@@ -44,7 +44,7 @@ public class GroceryItem {
     }
 
     public String extractName(String segment){
-        pattern = Pattern.compile("[nN]..[eE]:(\\w*);", Pattern.CASE_INSENSITIVE);
+        pattern = Pattern.compile("[nN]..[eE]:(\\w*).", Pattern.CASE_INSENSITIVE);
         matcher = pattern.matcher(segment);
         if (matcher.find()){
             return matcher.group(1);
@@ -55,7 +55,7 @@ public class GroceryItem {
     }
 
     public String extractPrice(String segment){
-        pattern = Pattern.compile("[pP]...[eE]:(\\d\\.\\d\\d);", Pattern.CASE_INSENSITIVE);
+        pattern = Pattern.compile("[pP]...[eE]:(\\d\\.\\d\\d).", Pattern.CASE_INSENSITIVE);
         matcher = pattern.matcher(segment);
         if (matcher.find()){
             return matcher.group(1);
@@ -66,7 +66,7 @@ public class GroceryItem {
     }
 
     public String extractType(String segment){
-        pattern = Pattern.compile("[tT]..[eE]:(\\w*);", Pattern.CASE_INSENSITIVE);
+        pattern = Pattern.compile("[tT]..[eE]:(\\w*).", Pattern.CASE_INSENSITIVE);
         matcher = pattern.matcher(segment);
         if (matcher.find()){
             return matcher.group(1);
@@ -85,5 +85,9 @@ public class GroceryItem {
         else {
             return "";
         }
+    }
+
+    public boolean errorFound(){ // Needs test
+        return price.isEmpty() || type.isEmpty() || expiration.isEmpty();
     }
 }
