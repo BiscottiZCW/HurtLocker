@@ -59,7 +59,6 @@ public class JerksonIO {
     }
 
     public static String createFormatString() {
-//        gl.countError();
         int errorCount = gl.getError();
         gl.countAllPrices();
         TreeMap<Double, Integer> milkPrices = gl.getMilkPrices();

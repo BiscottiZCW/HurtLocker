@@ -69,23 +69,6 @@ public class GroceryList extends ArrayList<ArrayList<GroceryItem>> {
         this.Cookies.add(cookies);
     }
 
-
-    public void countError (){
-        for (ArrayList<GroceryItem> list : this) {
-            for (GroceryItem item : list) {
-                if (item.getPrice().isEmpty()) {
-                    incrementError();
-                }
-                if (item.getType().isEmpty()) {
-                    incrementError();
-                }
-                if (item.getExpiration().isEmpty()) {
-                    incrementError();
-                }
-            }
-        }
-    }
-
     public void incrementError() {
         this.Error = getError() + 1;
     }
@@ -113,7 +96,7 @@ public class GroceryList extends ArrayList<ArrayList<GroceryItem>> {
             }
         }
 
-        this.applesPrices = allPrices;
+        this.milkPrices = allPrices;
     }
 
     public void countBreadPrices(){
@@ -139,7 +122,7 @@ public class GroceryList extends ArrayList<ArrayList<GroceryItem>> {
             }
         }
 
-        this.applesPrices = allPrices;
+        this.breadPrices = allPrices;
     }
 
     public void countCookiesPrices(){
