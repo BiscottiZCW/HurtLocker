@@ -165,4 +165,11 @@ public class GroceryItemTest {
         String expected = "";
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void testErrorFound() {
+        GroceryItem gi = new GroceryItem("Bizza","","Bood","Bexpired");
+
+        Assert.assertTrue(gi.errorFound());
+    }
 }

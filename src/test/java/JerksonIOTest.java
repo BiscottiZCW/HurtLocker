@@ -6,46 +6,28 @@ import java.util.ArrayList;
 public class JerksonIOTest {
 
     @Test
-    public void createFormatStringTest(){
-        GroceryList groceryList = new GroceryList();
-        ArrayList<GroceryItem> milk = new ArrayList<>();
-        ArrayList<GroceryItem> apples = new ArrayList<>();
-        ArrayList<GroceryItem> bread = new ArrayList<>();
-        ArrayList<GroceryItem> cookies = new ArrayList<>();
-        milk.add(new GroceryItem("MILK", "3.23", "food", "1/25/2018"));
-        apples.add(new GroceryItem("apples", "0.25", "food", "2/27/2020"));
-        apples.add(new GroceryItem("ApPlEs", "0.23", "food", "2/27/2020"));
-        apples.add(new GroceryItem("Apples", "0.23", "food", "2/27/2020"));
-        bread.add(new GroceryItem("Bread", "1.23", "food", "3/19/2021"));
-        cookies.add(new GroceryItem("Cookies", "2.25", "food", "4/15/2022"));
-        groceryList.setMilk(milk);
-        groceryList.setBread(bread);
-        groceryList.setApples(apples);
-        groceryList.setCookies(cookies);
-        groceryList.setError(2);
-
+    public void emptyCreateFormatStringTest(){
         String actual = JerksonIO.createFormatString();
-        String expected = "name:    Milk \t\t seen: 1 time\n" +
-                            "============= \t \t =============\n" +
-                            "Price: \t 3.23\t\t seen: 1 time\n" +
-                            "\n" +
-                            "name:   Bread\t\t seen: 1 time\n" +
-                            "=============\t\t =============\n" +
-                            "Price:   1.23\t\t seen: 1 time\n" +
-                            "-------------\t\t -------------\n" +
-                            "\n" +
-                            "name: Cookies     \t seen: 1 time\n" +
-                            "=============     \t =============\n" +
-                            "Price:   2.25        seen: 1 time\n" +
-                            "-------------        -------------\n" +
-                            "\n" +
-                            "name:  Apples     \t seen: 3 times\n" +
-                            "=============     \t =============\n" +
-                            "Price:   0.25     \t seen: 1 time\n" +
-                            "-------------     \t -------------\n" +
-                            "Price:   0.23  \t \t seen: 2 times" +
-                            "\n" +
-                            "Errors         \t \t seen: 2 times";
+        String expected = "name:    Milk \t\t seen: 0 times\n" +
+                "============= \t \t =============\n" +
+                "\n" +
+                "name:   Bread\t\t seen: 0 times\n" +
+                "============= \t \t =============\n" +
+                "\n" +
+                "name: Cookies        seen: 0 times\n" +
+                "============= \t \t =============\n" +
+                "\n" +
+                "name:  Apples\t\t seen: 0 times\n" +
+                "============= \t \t =============\n" +
+                "\n" +
+                "Errors         \t \t seen: 0 times";
         Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testReadRawDataToString() throws Exception {
+        String expected = "naMe:Milk;price:3.23;type:Food;expiration:1/25/2016##naME:BreaD;price:1.23;type:Food;expiration:1/02/2016##NAMe:BrEAD;price:1.23;type:Food;expiration:2/25/2016##naMe:MiLK;price:3.23;type:Food^expiration:1/11/2016##naMe:Cookies;price:2.25;type:Food%expiration:1/25/2016##naMe:CoOkieS;price:2.25;type:Food*expiration:1/25/2016##naMe:COokIes;price:2.25;type:Food;expiration:3/22/2016##naMe:COOkieS;price:2.25;type:Food;expiration:1/25/2016##NAME:MilK;price:3.23;type:Food;expiration:1/17/2016##naMe:MilK;price:1.23;type:Food!expiration:4/25/2016##naMe:apPles;price:0.25;type:Food;expiration:1/23/2016##naMe:apPles;price:0.23;type:Food;expiration:5/02/2016##NAMe:BrEAD;price:1.23;type:Food;expiration:1/25/2016##naMe:;price:3.23;type:Food;expiration:1/04/2016##naMe:Milk;price:3.23;type:Food;expiration:1/25/2016##naME:BreaD;price:1.23;type:Food@expiration:1/02/2016##NAMe:BrEAD;price:1.23;type:Food@expiration:2/25/2016##naMe:MiLK;priCe:;type:Food;expiration:1/11/2016##naMe:Cookies;price:2.25;type:Food;expiration:1/25/2016##naMe:Co0kieS;pRice:2.25;type:Food;expiration:1/25/2016##naMe:COokIes;price:2.25;type:Food;expiration:3/22/2016##naMe:COOkieS;Price:2.25;type:Food;expiration:1/25/2016##NAME:MilK;price:3.23;type:Food;expiration:1/17/2016##naMe:MilK;priCe:;type:Food;expiration:4/25/2016##naMe:apPles;prIce:0.25;type:Food;expiration:1/23/2016##naMe:apPles;pRice:0.23;type:Food;expiration:5/02/2016##NAMe:BrEAD;price:1.23;type:Food;expiration:1/25/2016##naMe:;price:3.23;type:Food^expiration:1/04/2016##";
+
+        Assert.assertEquals(expected, new JerksonIO().readRawDataToString());
     }
 }

@@ -114,35 +114,46 @@ public class GroceryListTest {
 
         Assert.assertEquals(5, groceryList.getError());
     }
+
     @Test
-    public void testCountError_One() {
+    public void testIncrementError() {
         GroceryList groceryList = new GroceryList();
+        groceryList.incrementError();
 
-        ArrayList<GroceryItem> Milk = new ArrayList<>();
-        GroceryItem groceryItemOneError = new GroceryItem("", "price", "type", "expiration");
-        Milk.add(groceryItemOneError);
-        int expected = 1;
-
-        groceryList.setMilk(Milk);
-        groceryList.countError();
-        int actual = groceryList.getError();
-
-        assertEquals(expected, actual);
+        Assert.assertEquals(1, groceryList.getError());
     }
 
     @Test
-    public void testCountError_Four() {
+    public void testAddToMilk() {
         GroceryList groceryList = new GroceryList();
+        groceryList.addToMilk(new GroceryItem(""));
 
-        ArrayList<GroceryItem> Milk = new ArrayList<>();
-        GroceryItem groceryItemFourErrors = new GroceryItem("", "", "", "");
-        Milk.add(groceryItemFourErrors);
-        int expected = 4;
-
-        groceryList.setMilk(Milk);
-        groceryList.countError();
-        int actual = groceryList.getError();
-
-        assertEquals(expected, actual);
+        Assert.assertEquals(1, groceryList.getMilk().size());
     }
+
+    @Test
+    public void testAddToBread() {
+        GroceryList groceryList = new GroceryList();
+        groceryList.addToBread(new GroceryItem(""));
+
+        Assert.assertEquals(1, groceryList.getBread().size());
+    }
+
+    @Test
+    public void testAddToApples() {
+        GroceryList groceryList = new GroceryList();
+        groceryList.addToApples(new GroceryItem(""));
+
+        Assert.assertEquals(1, groceryList.getApples().size());
+    }
+
+    @Test
+    public void testAddToCookies() {
+        GroceryList groceryList = new GroceryList();
+        groceryList.addToCookies(new GroceryItem(""));
+
+        Assert.assertEquals(1, groceryList.getCookies().size());
+    }
+
+
 }

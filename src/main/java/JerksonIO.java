@@ -128,6 +128,7 @@ public class JerksonIO {
 
     public static void main(String[] args) throws Exception{
         String output = (new JerksonIO()).readRawDataToString();
+        System.out.println(output);
         JerksonIO.extractValues(output);
         String results = JerksonIO.createFormatString();
         JerksonIO.exportTxt(results);

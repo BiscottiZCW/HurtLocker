@@ -87,7 +87,7 @@ public class GroceryItem {
         }
     }
 
-    public boolean errorFound(){ // Needs test
+    public boolean errorFound(){
         return price.isEmpty() || type.isEmpty() || expiration.isEmpty();
     }
 }
