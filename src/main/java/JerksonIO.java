@@ -25,6 +25,13 @@ public class JerksonIO {
             GroceryItem gi = new GroceryItem(item);
             // Add item to whichever GroceryList list it belongs in
             // This could be optimized, perhaps abstracted
+            if (gi.errorFound()){
+                gl.incrementError();
+            }
+            if (gi.getName().isEmpty()){
+                gl.incrementError();
+                continue;
+            }
             pattern = Pattern.compile("[mM]..[kK]");
             matcher = pattern.matcher(gi.getName());
             if (matcher.matches()){
@@ -47,12 +54,6 @@ public class JerksonIO {
             matcher = pattern.matcher(gi.getName());
             if (matcher.matches()){
                 gl.addToCookies(gi);
-                continue;
-            }
-            pattern = Pattern.compile("\\s");
-            matcher = pattern.matcher(gi.getName());
-            if (matcher.matches() || gi.errorFound()){
-                gl.incrementError();
             }
         }
     }
